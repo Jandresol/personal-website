@@ -1201,6 +1201,73 @@ font-family:'Fraunces',Georgia,serif!important;
   .nav-links { gap: 16px; }
   footer { padding: 24px; flex-direction: column; gap: 12px; }
 }
+
+/* ─── SCROLL REVEAL ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(.16,.8,.24,1), transform 0.7s cubic-bezier(.16,.8,.24,1);
+  will-change: opacity, transform;
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── CUSTOM CURSOR ─── */
+@media (hover: hover) and (pointer: fine) {
+  html.custom-cursor, html.custom-cursor a, html.custom-cursor button { cursor: none; }
+
+  #cursor-dot, #cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+  }
+
+  #cursor-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--amber-bright);
+    transition: opacity 0.2s ease, background 0.2s ease, width 0.2s ease, height 0.2s ease;
+  }
+
+  #cursor-ring {
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(253, 174, 38, 0.55);
+    transition: opacity 0.2s ease, width 0.25s cubic-bezier(.16,.8,.24,1), height 0.25s cubic-bezier(.16,.8,.24,1), background 0.25s ease, border-color 0.25s ease;
+  }
+
+  html.custom-cursor.cursor-visible #cursor-dot,
+  html.custom-cursor.cursor-visible #cursor-ring {
+    opacity: 1;
+  }
+
+  #cursor-ring.cursor-hover {
+    width: 60px;
+    height: 60px;
+    background: rgba(253, 174, 38, 0.1);
+    border-color: var(--amber-bright);
+  }
+
+  #cursor-dot.cursor-hover {
+    width: 0;
+    height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -1279,9 +1346,9 @@ font-family:'Fraunces',Georgia,serif!important;
 <!-- bg star -->
 <div aria-hidden="true" class="star" style="font-size:60px;color:rgb(196,98,42);opacity:0.18;position:absolute;top:40px;right:60px;transform:rotate(-65deg)">★</div>
 <div class="section-inner">
-<p class="section-eyebrow">Selected Work</p>
+<p class="section-eyebrow reveal">Selected Work</p>
 <div class="work-grid editorial-work">
-<article class="work-cell feature"><div class="ghost-word">SALESFORCE</div>
+<article class="work-cell feature reveal"><div class="ghost-word">SALESFORCE</div>
 <div>
 <div class="work-kicker">Feature · 2026 · Salesforce</div>
 <div class="work-org">Data Interpreter</div>
@@ -1297,7 +1364,7 @@ font-family:'Fraunces',Georgia,serif!important;
 </div>
 </div>
 </article>
-<article class="work-cell feature"><div class="ghost-word">MGH</div>
+<article class="work-cell feature reveal"><div class="ghost-word">MGH</div>
 <div>
 <div class="work-kicker">Feature · 2025–Present · MGH / HMS</div>
 <div class="work-org">Zomorrodi Lab</div>
@@ -1313,7 +1380,7 @@ font-family:'Fraunces',Georgia,serif!important;
 </div>
 </div>
 </article>
-<article class="work-cell medium">
+<article class="work-cell medium reveal">
 <div class="work-kicker">Research · Spring 2026</div>
 <div class="work-org">Optimal Transport Proof Autoformalization</div>
 <div class="work-role">Proof Autoformalization</div>
@@ -1325,7 +1392,7 @@ font-family:'Fraunces',Georgia,serif!important;
 <span class="work-tag">Lean</span>
 </div>
 </article>
-<article class="work-cell medium">
+<article class="work-cell medium reveal">
 <div class="work-kicker">Research · Fall 2025</div>
 <div class="work-org">Empirical Machine Learning Privacy Assessment</div>
 <div class="work-role">Differential Privacy · ML Security</div>
@@ -1336,10 +1403,10 @@ font-family:'Fraunces',Georgia,serif!important;
 <span class="work-tag">Biomedical Data</span>
 </div>
 </article>
-<article class="work-cell medium">
+<article class="work-cell medium reveal">
 <div class="work-kicker">Internship · 2025 · Salesforce</div>
-<div class="work-org">Platform Core</div>
-<div class="work-role">Salesforce · Full-Stack Development</div>
+<div class="work-org">Salesforce Internship</div>
+<div class="work-role">Software Engineering · Full-Stack Development</div>
 <div class="work-desc">Built a full-stack web application using React, Node.js, Express, and PostgreSQL, integrating the OpenAI API through an MCP server for search prompting and a custom recommendation algorithm.</div>
 <div class="work-tag-row">
 <span class="work-tag">React</span>
@@ -1347,7 +1414,7 @@ font-family:'Fraunces',Georgia,serif!important;
 <span class="work-tag">OpenAI API</span>
 </div>
 </article>
-<article class="work-cell compact">
+<article class="work-cell compact reveal">
 <div class="work-kicker">Award · Apr 2025</div>
 <div class="work-org">Mosaic</div>
 <div class="work-role">Anthropic × WiCS · Best Impact</div>
@@ -1357,7 +1424,7 @@ font-family:'Fraunces',Georgia,serif!important;
 <span class="work-tag">Education</span>
 </div>
 </article>
-<article class="work-cell compact">
+<article class="work-cell compact reveal">
 <div class="work-kicker">Initiative · 2026</div>
 <div class="work-org">Haiti Access</div>
 <div class="work-role">Educational Access Initiative</div>
@@ -1367,7 +1434,7 @@ font-family:'Fraunces',Georgia,serif!important;
 <span class="work-tag">Community</span>
 </div>
 </article>
-<article class="work-cell compact">
+<article class="work-cell compact reveal">
 <div class="work-kicker">Award · 2024</div>
 <div class="work-org">ACM Social Hackathon Winner</div>
 <div class="work-role">ACM Social Hackathon Winner</div>
@@ -1377,7 +1444,7 @@ font-family:'Fraunces',Georgia,serif!important;
 <span class="work-tag">Public Health</span>
 </div>
 </article>
-<article class="work-cell compact">
+<article class="work-cell compact reveal">
 <div class="work-kicker">Systems · Spring 2026</div>
 <div class="work-org">Fault-Tolerant Distributed Booking System</div>
 <div class="work-role">Node.js · WebSockets · Paxos</div>
@@ -1411,17 +1478,17 @@ Harvard Greener Scott Scholars · Treasurer</div>
 <div aria-hidden="true" class="star" style="font-size:22px;color:rgb(212,135,74);opacity:0.6;position:absolute;bottom:80px;right:100px;transform:rotate(23deg)">★</div>
 <div aria-hidden="true" class="star" style="font-size:22px;color:rgb(212,135,74);opacity:0.6;position:absolute;bottom:110px;right:136px;transform:rotate(-1deg)">★</div>
 <div class="section-inner">
-<p class="section-eyebrow">Things I'm thinking about</p>
+<p class="section-eyebrow reveal">Things I'm thinking about</p>
 <div class="thinking-list">
-<div class="thinking-item">
+<div class="thinking-item reveal">
 <span class="thinking-num">01</span>
 <p class="thinking-text">Where agentic systems lose the thread</p>
 </div>
-<div class="thinking-item">
+<div class="thinking-item reveal">
 <span class="thinking-num">02</span>
 <p class="thinking-text">Biomedical ML as a craft problem</p>
 </div>
-<div class="thinking-item">
+<div class="thinking-item reveal">
 <span class="thinking-num">03</span>
 <p class="thinking-text">Who the tools aren't built for — not as a slogan. As something I actually sit with.</p>
 </div>
@@ -1439,9 +1506,9 @@ Harvard Greener Scott Scholars · Treasurer</div>
 <img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/Desert%20Jewel.png" style="left:40px;bottom:100px;width:200px;height:200px;opacity:.7;transform:rotate(-7deg) scaleX(-1);"/>
 <img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2836%29.png" style="right:240px;bottom:60px;width:160px;height:180px;opacity:.65;transform:rotate(4deg);"/>
 <div class="section-inner">
-<p class="section-eyebrow">About</p>
+<p class="section-eyebrow reveal">About</p>
 <div class="about-layout">
-<div class="about-body">
+<div class="about-body reveal">
 <p>I'm an A.B./S.M. candidate in Computer Science at Harvard working at the intersection of applied machine learning and software engineering. My recent work ranges from production ML infrastructure at Salesforce to biomedical AI research at Mass General Hospital and Harvard Medical School, with a broader interest in building reliable systems that make complex information more accessible.</p>
 
 <div style="margin-top:32px;transform:rotate(-0.5deg)">
@@ -1450,7 +1517,7 @@ Harvard Greener Scott Scholars · Treasurer</div>
           </div>
 </div>
 </div>
-<div class="about-right">
+<div class="about-right reveal">
 <div class="stamp" style="width:100%">
 <strong>Quick facts</strong>Harvard · CS · '27
 Applied AI
@@ -1473,13 +1540,13 @@ Education Access</div>
 <!-- Hand embroidery - BOTTOM RIGHT CORNER, LARGER, TOUCHING FOOTER -->
 <img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/Hand%20embroidery%20Byzantine%20Fragments.png" style="right:0px;bottom:-60px;width:420px;height:420px;opacity:.92;transform:none;"/>
 <div class="section-inner">
-<p class="section-eyebrow">Contact</p>
+<p class="section-eyebrow reveal">Contact</p>
 <div class="contact-layout">
-<div class="contact-item">
+<div class="contact-item reveal">
 <div class="contact-label">Email</div>
 <a class="contact-value" href="mailto:jasmineandresol@college.harvard.edu">jasmineandresol<br/>@college.harvard.edu</a>
 </div>
-<div class="contact-item">
+<div class="contact-item reveal">
 <div class="contact-label">GitHub</div>
 <a class="contact-value" href="https://github.com/Jandresol" rel="noopener" target="_blank">github.com/Jandresol</a>
 </div>
@@ -1500,5 +1567,102 @@ github.com/Jandresol</div>
 <span aria-hidden="true" class="star" style="font-size:12px;color:rgb(196,98,42);position:static">★</span>
 </div>
 </footer>
+<div aria-hidden="true" id="cursor-dot"></div>
+<div aria-hidden="true" id="cursor-ring"></div>
+<script>
+(function () {
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ─── Scroll reveal ─── */
+  var revealEls = document.querySelectorAll('.reveal');
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    revealEls.forEach(function (el) { el.classList.add('in-view'); });
+  } else {
+    revealEls.forEach(function (el, i) {
+      el.style.transitionDelay = Math.min(i % 6, 5) * 70 + 'ms';
+    });
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(function (el) { revealObserver.observe(el); });
+  }
+
+  /* ─── Parallax scroll on decorative art ─── */
+  if (!reduceMotion) {
+    var parallaxEls = Array.prototype.slice.call(
+      document.querySelectorAll('.edge-bleed, .asset-img, .star, .ghost-27, .ghost-2026, .editorial-accent-star, .editorial-accent-circle, .editorial-accent-rect')
+    ).map(function (el, i) {
+      var depth = 0.06 + (i % 5) * 0.035;
+      return { el: el, depth: depth, baseTransform: el.style.transform || '' };
+    });
+
+    var ticking = false;
+    function applyParallax() {
+      var scrollY = window.scrollY || window.pageYOffset;
+      parallaxEls.forEach(function (item) {
+        var offset = (scrollY * item.depth).toFixed(2);
+        item.el.style.transform = item.baseTransform + ' translateY(' + (-offset) + 'px)';
+      });
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        window.requestAnimationFrame(applyParallax);
+        ticking = true;
+      }
+    }, { passive: true });
+    applyParallax();
+  }
+
+  /* ─── Custom cursor ─── */
+  var supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (supportsHover && !reduceMotion) {
+    document.documentElement.classList.add('custom-cursor');
+    var dot = document.getElementById('cursor-dot');
+    var ring = document.getElementById('cursor-ring');
+    var mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+    window.addEventListener('mousemove', function (e) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dot.style.left = mouseX + 'px';
+      dot.style.top = mouseY + 'px';
+      document.documentElement.classList.add('cursor-visible');
+    });
+
+    window.addEventListener('mouseleave', function () {
+      document.documentElement.classList.remove('cursor-visible');
+    });
+
+    function animateRing() {
+      ringX += (mouseX - ringX) * 0.18;
+      ringY += (mouseY - ringY) * 0.18;
+      ring.style.left = ringX + 'px';
+      ring.style.top = ringY + 'px';
+      window.requestAnimationFrame(animateRing);
+    }
+    window.requestAnimationFrame(animateRing);
+
+    var hoverTargets = 'a, button, .work-cell, .work-tag, .contact-value, .nav-links a';
+    document.addEventListener('mouseover', function (e) {
+      if (e.target.closest(hoverTargets)) {
+        dot.classList.add('cursor-hover');
+        ring.classList.add('cursor-hover');
+      }
+    });
+    document.addEventListener('mouseout', function (e) {
+      if (e.target.closest(hoverTargets)) {
+        dot.classList.remove('cursor-hover');
+        ring.classList.remove('cursor-hover');
+      }
+    });
+  }
+})();
+</script>
 </body>
 </html>
