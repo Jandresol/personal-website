@@ -1200,6 +1200,28 @@ font-family:'Fraunces',Georgia,serif!important;
   nav { padding: 12px 20px; }
   .nav-links { gap: 16px; }
   footer { padding: 24px; flex-direction: column; gap: 12px; }
+
+  /* headlines were fixed-size + nowrap, which overflowed narrow phones */
+  .rip { white-space: normal; }
+  .rip-xl { font-size: clamp(40px, 13vw, 64px) !important; }
+  .rip-l { font-size: clamp(28px, 9vw, 44px) !important; }
+
+  /* pre-formatted stamp text overflowed narrow phones; let it wrap */
+  .stamp { white-space: pre-wrap; }
+
+  /* decorative stickers were sized for desktop and swamped small viewports */
+  .asset-img {
+    max-width: 42vw !important;
+    max-height: 42vw !important;
+    width: auto !important;
+    height: auto !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .nav-name { font-size: 12px; }
+  .nav-links { gap: 12px; }
+  .nav-links a { font-size: 10px; }
 }
 
 /* ─── SCROLL REVEAL ─── */
@@ -1248,6 +1270,11 @@ font-family:'Fraunces',Georgia,serif!important;
     opacity: 1;
   }
 
+  html.custom-cursor.cursor-native #cursor-dot,
+  html.custom-cursor.cursor-native #cursor-ring {
+    opacity: 0 !important;
+  }
+
   #cursor-ring.cursor-hover {
     width: 60px;
     height: 60px;
@@ -1267,6 +1294,55 @@ font-family:'Fraunces',Georgia,serif!important;
     transform: none !important;
     transition: none !important;
   }
+}
+
+/* ─── COLLAGE DRAG ─── */
+.collage-piece {
+  pointer-events: auto;
+  cursor: grab;
+  touch-action: none;
+}
+
+.collage-piece.dragging {
+  cursor: grabbing;
+  z-index: 200 !important;
+  transition: none !important;
+}
+
+.collage-box {
+  position: absolute;
+  inset: 0;
+  border: 1.5px dashed rgba(253, 174, 38, 0.85);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.collage-piece:hover .collage-box {
+  opacity: 0.35;
+}
+
+.collage-piece.dragging .collage-box {
+  opacity: 1;
+}
+
+.collage-handle {
+  position: absolute;
+  bottom: -9px;
+  right: -9px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--amber-bright);
+  border: 1.5px solid var(--bg);
+  opacity: 0;
+  pointer-events: auto;
+  cursor: alias;
+}
+
+.collage-piece.dragging .collage-handle,
+.collage-piece:hover .collage-handle {
+  opacity: 0.9;
 }
 </style>
 </head>
@@ -1326,7 +1402,7 @@ font-family:'Fraunces',Georgia,serif!important;
 <!-- Cutout -->
 <div style="margin-top:32px;display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap;">
 <div class="cutout">
-        I build systems that learn —<br/>
+        I build systems that learn<br/>
         and try to stay curious<br/>
         about what they cannot yet do.
       </div>
@@ -1490,7 +1566,7 @@ Harvard Greener Scott Scholars · Treasurer</div>
 </div>
 <div class="thinking-item reveal">
 <span class="thinking-num">03</span>
-<p class="thinking-text">Who the tools aren't built for — not as a slogan. As something I actually sit with.</p>
+<p class="thinking-text">Who the tools aren't built for and who do they overlook.</p>
 </div>
 </div>
 </div>
@@ -1513,7 +1589,7 @@ Harvard Greener Scott Scholars · Treasurer</div>
 
 <div style="margin-top:32px;transform:rotate(-0.5deg)">
 <div class="cutout alt" style="max-width:340px;font-size:14px;">
-            "I build systems that learn — and try to stay curious about what they cannot yet do."
+            "I build systems that learn, and try to stay curious about what they cannot yet do."
           </div>
 </div>
 </div>
@@ -1592,10 +1668,131 @@ github.com/Jandresol</div>
     revealEls.forEach(function (el) { revealObserver.observe(el); });
   }
 
+  /* ─── Collage builder: wrap sticker images so they can be dragged + rotated (desktop/mouse only) ─── */
+  var collagePieces = [];
+  var supportsFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  function collagify(img) {
+    var parent = img.parentElement;
+    if (!parent) return;
+    var parentRect = parent.getBoundingClientRect();
+    var rect = img.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) return;
+
+    var rawStyle = img.getAttribute('style') || '';
+    var rotateMatch = /rotate\(([-\d.]+)deg\)/.exec(rawStyle);
+    var baseRotate = rotateMatch ? parseFloat(rotateMatch[1]) : 0;
+    var flipped = /scaleX\(-1\)/.test(rawStyle);
+    var zIndex = getComputedStyle(img).zIndex;
+
+    var wrapper = document.createElement('div');
+    wrapper.className = 'collage-piece';
+    wrapper.style.position = 'absolute';
+    wrapper.style.left = (rect.left - parentRect.left) + 'px';
+    wrapper.style.top = (rect.top - parentRect.top) + 'px';
+    wrapper.style.width = rect.width + 'px';
+    wrapper.style.height = rect.height + 'px';
+    if (zIndex !== 'auto') wrapper.style.zIndex = zIndex;
+    wrapper.dataset.rotate = baseRotate;
+    wrapper.dataset.flip = flipped ? '1' : '0';
+    wrapper.style.transform = 'rotate(' + baseRotate + 'deg)' + (flipped ? ' scaleX(-1)' : '');
+
+    parent.insertBefore(wrapper, img);
+    img.style.position = 'absolute';
+    img.style.left = '0';
+    img.style.top = '0';
+    img.style.right = '';
+    img.style.bottom = '';
+    img.style.width = '100%';
+    img.style.height = '100%';
+    img.style.transform = 'none';
+    wrapper.appendChild(img);
+
+    var box = document.createElement('div');
+    box.className = 'collage-box';
+    wrapper.appendChild(box);
+
+    var handle = document.createElement('div');
+    handle.className = 'collage-handle';
+    handle.setAttribute('aria-hidden', 'true');
+    wrapper.appendChild(handle);
+
+    attachCollageHandlers(wrapper, handle);
+    collagePieces.push({ el: wrapper, depth: 0.06 + (collagePieces.length % 5) * 0.035, lastParallax: 0 });
+  }
+
+  function attachCollageHandlers(wrapper, handle) {
+    var moving = false, rotating = false;
+    var startX, startY, startLeft, startTop;
+    var startRotate, startAngle, centerX, centerY;
+
+    function onMoveStart(e) {
+      if (e.button !== undefined && e.button !== 0) return;
+      moving = true;
+      wrapper.classList.add('dragging');
+      startX = e.clientX; startY = e.clientY;
+      startLeft = parseFloat(wrapper.style.left) || 0;
+      startTop = parseFloat(wrapper.style.top) || 0;
+      try { wrapper.setPointerCapture(e.pointerId); } catch (err) {}
+      window.addEventListener('pointermove', onMove);
+      window.addEventListener('pointerup', onMoveEnd);
+    }
+    function onMove(e) {
+      if (!moving) return;
+      wrapper.style.left = (startLeft + (e.clientX - startX)) + 'px';
+      wrapper.style.top = (startTop + (e.clientY - startY)) + 'px';
+    }
+    function onMoveEnd(e) {
+      moving = false;
+      wrapper.classList.remove('dragging');
+      try { wrapper.releasePointerCapture(e.pointerId); } catch (err) {}
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onMoveEnd);
+    }
+    wrapper.addEventListener('pointerdown', function (e) {
+      if (e.target === handle) return;
+      onMoveStart(e);
+    });
+
+    function onRotateStart(e) {
+      e.stopPropagation();
+      rotating = true;
+      wrapper.classList.add('dragging');
+      var rect = wrapper.getBoundingClientRect();
+      centerX = rect.left + rect.width / 2;
+      centerY = rect.top + rect.height / 2;
+      startRotate = parseFloat(wrapper.dataset.rotate) || 0;
+      startAngle = Math.atan2(e.clientY - centerY, e.clientX - centerX) * 180 / Math.PI;
+      try { handle.setPointerCapture(e.pointerId); } catch (err) {}
+      window.addEventListener('pointermove', onRotate);
+      window.addEventListener('pointerup', onRotateEnd);
+    }
+    function onRotate(e) {
+      if (!rotating) return;
+      var angle = Math.atan2(e.clientY - centerY, e.clientX - centerX) * 180 / Math.PI;
+      var newRotate = startRotate + (angle - startAngle);
+      wrapper.dataset.rotate = newRotate;
+      var flip = wrapper.dataset.flip === '1';
+      wrapper.style.transform = 'rotate(' + newRotate + 'deg)' + (flip ? ' scaleX(-1)' : '');
+    }
+    function onRotateEnd(e) {
+      rotating = false;
+      wrapper.classList.remove('dragging');
+      try { handle.releasePointerCapture(e.pointerId); } catch (err) {}
+      window.removeEventListener('pointermove', onRotate);
+      window.removeEventListener('pointerup', onRotateEnd);
+    }
+    handle.addEventListener('pointerdown', onRotateStart);
+  }
+
+  if (supportsFinePointer && !reduceMotion && window.PointerEvent) {
+    document.querySelectorAll('img.asset-img, img.edge-bleed').forEach(collagify);
+  }
+
   /* ─── Parallax scroll on decorative art ─── */
   if (!reduceMotion) {
-    var parallaxEls = Array.prototype.slice.call(
-      document.querySelectorAll('.edge-bleed, .asset-img, .star, .ghost-27, .ghost-2026, .editorial-accent-star, .editorial-accent-circle, .editorial-accent-rect')
+    var otherParallaxEls = Array.prototype.slice.call(
+      document.querySelectorAll('.star, .ghost-27, .ghost-2026')
     ).map(function (el, i) {
       var depth = 0.06 + (i % 5) * 0.035;
       return { el: el, depth: depth, baseTransform: el.style.transform || '' };
@@ -1604,9 +1801,16 @@ github.com/Jandresol</div>
     var ticking = false;
     function applyParallax() {
       var scrollY = window.scrollY || window.pageYOffset;
-      parallaxEls.forEach(function (item) {
+      otherParallaxEls.forEach(function (item) {
         var offset = (scrollY * item.depth).toFixed(2);
         item.el.style.transform = item.baseTransform + ' translateY(' + (-offset) + 'px)';
+      });
+      collagePieces.forEach(function (item) {
+        var offset = scrollY * item.depth;
+        var delta = offset - item.lastParallax;
+        item.lastParallax = offset;
+        var currentTop = parseFloat(item.el.style.top) || 0;
+        item.el.style.top = (currentTop - delta) + 'px';
       });
       ticking = false;
     }
@@ -1659,6 +1863,18 @@ github.com/Jandresol</div>
       if (e.target.closest(hoverTargets)) {
         dot.classList.remove('cursor-hover');
         ring.classList.remove('cursor-hover');
+      }
+    });
+
+    /* collage pieces use native grab/alias cursors, so hide the custom one over them */
+    document.addEventListener('mouseover', function (e) {
+      if (e.target.closest('.collage-piece')) {
+        document.documentElement.classList.add('cursor-native');
+      }
+    });
+    document.addEventListener('mouseout', function (e) {
+      if (e.target.closest('.collage-piece')) {
+        document.documentElement.classList.remove('cursor-native');
       }
     });
   }
