@@ -734,6 +734,10 @@ footer {
   mix-blend-mode: soft-light;
 }
 
+.mobile-hero-laptop {
+  display: none;
+}
+
 .hero-koi-top {
   z-index: 3 !important;
 }
@@ -1094,6 +1098,9 @@ footer {
     grid-template-columns: 1fr;
     gap: 18px;
   }
+  .project-feature-grid .work-cell.feature {
+    grid-template-columns: 1fr;
+  }
   .work-cell.medium,
   .work-cell.compact,
   .project-secondary-grid .work-cell,
@@ -1350,7 +1357,7 @@ font-family:'Fraunces',Georgia,serif!important;
 .rip-l{font-size:clamp(44px,7vw,82px)!important;letter-spacing:-.04em;}
 
 @media (max-width: 700px) {
-  #hero { min-height: auto; padding: 104px 0 64px; }
+  #hero { display: block; min-height: auto; padding: 104px 0 56px; }
   .hero-inner { padding: 0 22px; max-width: 100%; }
   .ghost-27 { font-size: 150px; opacity: 0.08; right: -56px; }
   .ghost-2026 { display: none; }
@@ -1361,9 +1368,10 @@ font-family:'Fraunces',Georgia,serif!important;
   .contact-portrait { width: min(72vw, 210px); }
   .section { padding: 72px 0; }
   .section-inner { padding: 0 22px; }
-  nav { padding: 12px 18px; align-items: flex-start; gap: 12px; }
-  .nav-links { gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
-  .nav-links a { font-size: 10px; letter-spacing: 0.1em; }
+  nav { padding: 12px 14px; align-items: center; gap: 0; }
+  .nav-name { display: none; }
+  .nav-links { width: 100%; gap: 0; flex-wrap: nowrap; justify-content: space-between; }
+  .nav-links a { font-size: 10px; letter-spacing: 0.08em; white-space: nowrap; }
   .rip-xl { font-size: clamp(48px, 16vw, 64px) !important; white-space: normal; }
   .rip-l { font-size: clamp(34px, 13vw, 50px) !important; white-space: normal; }
   .rip-m { font-size: 15px; }
@@ -1411,6 +1419,16 @@ font-family:'Fraunces',Georgia,serif!important;
     opacity: 0.34 !important;
   }
   #hero > .asset-bg:first-of-type { opacity: 0.2 !important; }
+  .mobile-hero-laptop {
+    display: block;
+    position: relative;
+    z-index: 10;
+    width: calc(100% - 44px);
+    max-width: 420px;
+    height: auto;
+    margin: 28px auto 0;
+    opacity: 0.92;
+  }
   footer { padding: 24px; flex-direction: column; gap: 12px; }
 }
 
@@ -1530,11 +1548,11 @@ font-family:'Fraunces',Georgia,serif!important;
 <!-- Cutout -->
 <div style="margin-top:32px;display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap;">
 <div class="cutout">
-        Harvard A.B./S.M. candidate
-        in Computer Science <br/> building effective and informed AI/ML systems
+        Harvard A.B./S.M. candidate in Computer Science building effective and informed AI/ML systems
       </div>
 </div>
 </div>
+<img alt="" aria-hidden="true" class="mobile-hero-laptop" src="laptop.png"/>
 </section>
 <!-- WORK -->
 <section class="section" id="work">
@@ -1549,7 +1567,7 @@ font-family:'Fraunces',Georgia,serif!important;
 <div aria-hidden="true" class="star" style="font-size:60px;color:rgb(196,98,42);opacity:0.18;position:absolute;top:40px;right:60px;transform:rotate(-65deg)">★</div>
 <div class="section-inner">
 <p class="section-eyebrow reveal">Experience</p>
-<div class="work-grid editorial-work project-feature-grid">
+<div class="work-grid editorial-work">
 <article class="work-cell feature reveal"><div class="ghost-word">SALESFORCE</div>
 <div>
 <div class="work-kicker">Feature · 2026 · Salesforce</div>
