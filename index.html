@@ -6,6 +6,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Jasmine Andresol</title>
+<link rel="icon" type="image/png" href="_%20%2813%29.png"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
@@ -36,6 +37,7 @@ body {
   font-family: Arial, sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  color: var(--cream);
 }
 
 /* ─── TEXTURE LAYER ─── */
@@ -76,7 +78,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(19, 11, 2, 0.9);
+  background: rgba(19, 11, 2, 0.94);
   border-bottom: 1px solid rgba(180, 110, 40, 0.2);
   backdrop-filter: blur(8px);
 }
@@ -108,8 +110,8 @@ nav {
 /* ─── HERO ─── */
 #hero {
   position: relative;
-  min-height: 100vh;
-  padding: 120px 0 80px;
+  min-height: 88vh;
+  padding: 132px 0 96px;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -131,8 +133,9 @@ nav {
 .hero-inner {
   position: relative;
   z-index: 10;
-  padding: 0 60px;
-  max-width: 1100px;
+  padding-left: clamp(52px, 7vw, 104px);
+  padding-right: 40px;
+  max-width: 820px;
 }
 
 /* Ghost numbers behind everything */
@@ -175,12 +178,25 @@ nav {
   user-select: none;
 }
 
+.hero-star {
+  z-index: 4;
+  color: rgba(196, 98, 42, 0.78);
+}
+
+.hero-star-lg {
+  font-size: 48px;
+}
+
+.hero-star-sm {
+  font-size: 24px;
+}
+
 /* ─── RIP HEADLINES ─── */
 .rip-stack {
   display: flex;
   flex-direction: column;
   gap: 0;
-  margin-bottom: 28px;
+  margin-bottom: 22px;
 }
 
 .rip {
@@ -212,8 +228,8 @@ nav {
 .rip-badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 10px;
+  gap: 8px;
+  margin-top: 14px;
 }
 
 .rip-m {
@@ -235,24 +251,26 @@ nav {
 /* ─── PILL ─── */
 .pill-strip {
   display: inline-flex;
-  background: rgba(90, 40, 10, 0.7);
+  background: rgba(90, 40, 10, 0.58);
   color: rgba(220, 150, 60, 0.85);
   font-size: 11px;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
-  padding: 5px 14px;
-  margin-top: 20px;
+  padding: 7px 16px;
+  margin-top: 8px;
+  max-width: 100%;
+  line-height: 1.4;
 }
 
 /* ─── CUTOUT ─── */
 .cutout {
   background: #f5f0e8;
-  padding: 14px 18px;
+  padding: 18px 22px;
   font-family: 'Times New Roman', Georgia, serif;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.7;
   color: #1a0e00;
-  max-width: 240px;
+  max-width: 440px;
   transform: rotate(0.5deg);
   box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
 }
@@ -268,9 +286,10 @@ nav {
 /* ─── SECTIONS ─── */
 .section {
   position: relative;
-  padding: 88px 0;
+  padding: 96px 0;
   border-bottom: 1px solid rgba(180, 110, 40, 0.12);
   overflow: hidden;
+  background: transparent;
 }
 
 .section::before {
@@ -298,9 +317,9 @@ nav {
 .section-inner {
   position: relative;
   z-index: 10;
-  max-width: 1000px;
+  max-width: 1080px;
   margin: 0 auto;
-  padding: 0 60px;
+  padding: 0 56px;
 }
 
 .section-eyebrow {
@@ -537,6 +556,85 @@ nav {
   gap: 0;
 }
 
+.contact-frame {
+  position: relative;
+  display: grid;
+  grid-template-columns: 0.9fr 1fr 1.2fr;
+  gap: 36px;
+  padding: 34px 38px;
+  border: 1px solid rgba(224, 146, 63, 0.28);
+  background:
+    linear-gradient(90deg, rgba(22, 13, 5, 0.94), rgba(22, 13, 5, 0.86)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(245, 240, 232, 0.025) 0,
+      rgba(245, 240, 232, 0.025) 1px,
+      transparent 1px,
+      transparent 9px
+    );
+  backdrop-filter: blur(5px);
+  align-items: center;
+}
+
+.contact-frame::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  width: 34px;
+  height: 1px;
+  background: rgba(253, 174, 38, 0.48);
+}
+
+.contact-heading {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(32px, 5vw, 64px);
+  line-height: 0.95;
+  color: var(--amber-text);
+  letter-spacing: -0.04em;
+}
+
+.contact-portrait {
+  position: relative;
+  width: min(100%, 210px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(253, 174, 38, 0.32);
+  background:
+    radial-gradient(circle at 68% 30%, rgba(196, 98, 42, 0.28), transparent 36%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(245, 240, 232, 0.08) 0,
+      rgba(245, 240, 232, 0.08) 1px,
+      transparent 1px,
+      transparent 8px
+    ),
+    rgba(12, 7, 3, 0.8);
+  padding: 10px;
+  box-shadow: 10px 10px 0 rgba(101, 16, 0, 0.22);
+}
+
+.contact-portrait img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  image-rendering: pixelated;
+  mix-blend-mode: normal;
+}
+
+.contact-note {
+  margin-top: 16px;
+  max-width: 360px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(245, 240, 232, 0.68);
+}
+
+.contact-links {
+  display: grid;
+  gap: 0;
+}
+
 .contact-item {
   padding: 28px 0;
   border-top: 1px solid rgba(180, 110, 40, 0.15);
@@ -607,20 +705,6 @@ footer {
   opacity: 0.6;
 }
 
-/* Enhanced hero section accents */
-#hero .rip-stack::after {
-  content: '';
-  position: absolute;
-  bottom: 20px;
-  left: 0;
-  width: 100px;
-  height: 2px;
-  background: linear-gradient(to right, var(--amber-bright), transparent);
-  opacity: 0.3;
-}
-
-
-
 /* ─── FOLDER IMAGE ASSETS ─── */
 .asset-img {
   position: absolute;
@@ -631,7 +715,33 @@ footer {
   border: 0;
   pointer-events: none;
   user-select: none;
+  max-width: min(42vw, 440px);
 }
+
+.hero-laptop,
+.hero-laptop-ghost,
+.hero-koi-top,
+.hero-koi-bottom {
+  max-width: none;
+}
+
+.hero-laptop {
+  z-index: 4 !important;
+}
+
+.hero-laptop-ghost {
+  z-index: 2 !important;
+  mix-blend-mode: soft-light;
+}
+
+.hero-koi-top {
+  z-index: 3 !important;
+}
+
+.hero-koi-bottom {
+  z-index: 4 !important;
+}
+
 .asset-bg {
   position: absolute;
   display: block;
@@ -692,9 +802,10 @@ footer {
   z-index: 2;
   pointer-events: none;
   background:
-    radial-gradient(circle at 15% 25%, rgba(253,174,38,.18), transparent 35%),
-    radial-gradient(circle at 80% 20%, rgba(175,34,0,.22), transparent 40%),
-    radial-gradient(circle at 55% 75%, rgba(196,98,42,.12), transparent 45%),
+    linear-gradient(90deg, rgba(19,11,2,.92), rgba(19,11,2,.68) 44%, rgba(19,11,2,.35)),
+    radial-gradient(circle at 15% 25%, rgba(253,174,38,.12), transparent 32%),
+    radial-gradient(circle at 80% 20%, rgba(175,34,0,.14), transparent 40%),
+    radial-gradient(circle at 55% 75%, rgba(196,98,42,.08), transparent 45%),
     linear-gradient(
       140deg,
       rgba(0,0,0,.05),
@@ -704,20 +815,22 @@ footer {
   mix-blend-mode: soft-light;
 }
 
-/* Bold diagonal stripe overlay on thinking section */
-#thinking::after {
+/* Controlled editorial stripe overlay on projects */
+#projects::after {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: repeating-linear-gradient(
+  background:
+  linear-gradient(rgba(19, 11, 2, 0.42), rgba(19, 11, 2, 0.58)),
+  repeating-linear-gradient(
     45deg,
     transparent,
-    transparent 32px,
-    rgba(175, 34, 0, 0.20) 32px,
-    rgba(175, 34, 0, 0.20) 64px
+    transparent 46px,
+    rgba(175, 34, 0, 0.08) 46px,
+    rgba(175, 34, 0, 0.08) 92px
   );
   z-index: 2;
   pointer-events: none;
@@ -831,23 +944,24 @@ footer {
 .work-grid.editorial-work {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 14px;
+  gap: 16px;
   background: transparent;
 }
 
 .work-cell {
-  background: rgba(19, 11, 2, 0.86);
-  border: 1px solid rgba(180, 110, 40, 0.22);
-  padding: 26px;
+  background: rgba(22, 13, 5, 0.9);
+  border: 1px solid rgba(224, 146, 63, 0.24);
+  padding: 28px;
   min-height: 220px;
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(5px);
 }
 
 .work-cell.feature {
   grid-column: span 12;
-  min-height: 300px;
-  padding: 38px 42px;
+  min-height: 260px;
+  padding: 36px 40px;
   display: grid;
   grid-template-columns: 1.1fr 1.6fr;
   gap: 48px;
@@ -860,7 +974,33 @@ footer {
 
 .work-cell.compact {
   grid-column: span 3;
-  min-height: 250px;
+  min-height: 245px;
+}
+
+.course-grid .work-cell:nth-child(-n + 2) {
+  grid-column: span 6;
+}
+
+.course-grid .work-cell:nth-child(n + 3) {
+  grid-column: span 4;
+}
+
+.project-secondary-grid .work-cell {
+  grid-column: span 3;
+}
+
+.project-feature-grid .work-cell.feature {
+  grid-column: span 12;
+  grid-template-columns: 1.1fr 1.6fr;
+  min-height: 260px;
+}
+
+.project-secondary-grid .work-cell:nth-child(-n + 3) {
+  grid-column: span 4;
+}
+
+.project-secondary-grid .work-cell:nth-child(n + 4) {
+  grid-column: span 3;
 }
 
 .work-kicker {
@@ -898,7 +1038,7 @@ footer {
 
 .work-desc {
   font-size: 14px;
-  color: rgba(245, 240, 232, 0.68);
+  color: rgba(245, 240, 232, 0.78);
   line-height: 1.75;
 }
 
@@ -937,8 +1077,16 @@ footer {
 }
 
 .work-cell:hover {
-  background: rgba(42, 22, 6, 0.86);
+  background: rgba(42, 22, 6, 0.9);
   border-color: rgba(253, 174, 38, 0.28);
+}
+
+.card-link {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  text-indent: -9999px;
+  overflow: hidden;
 }
 
 @media (max-width: 900px) {
@@ -947,7 +1095,13 @@ footer {
     gap: 18px;
   }
   .work-cell.medium,
-  .work-cell.compact {
+  .work-cell.compact,
+  .project-secondary-grid .work-cell,
+  .project-secondary-grid .work-cell:nth-child(-n + 3),
+  .project-secondary-grid .work-cell:nth-child(n + 4),
+  .project-feature-grid .work-cell.feature,
+  .course-grid .work-cell:nth-child(-n + 2),
+  .course-grid .work-cell:nth-child(n + 3) {
     grid-column: span 6;
   }
 }
@@ -958,7 +1112,13 @@ footer {
   }
   .work-cell.feature,
   .work-cell.medium,
-  .work-cell.compact {
+  .work-cell.compact,
+  .project-secondary-grid .work-cell,
+  .project-secondary-grid .work-cell:nth-child(-n + 3),
+  .project-secondary-grid .work-cell:nth-child(n + 4),
+  .project-feature-grid .work-cell.feature,
+  .course-grid .work-cell:nth-child(-n + 2),
+  .course-grid .work-cell:nth-child(n + 3) {
     grid-column: span 1;
   }
   .work-cell.feature {
@@ -1091,7 +1251,7 @@ footer {
     opacity: 0.5;
   }
 
-  #thinking .edge-bleed.thinking-left {
+  #projects .edge-bleed.thinking-left {
     left: -190px;
     top: 160px;
     width: 430px;
@@ -1099,7 +1259,7 @@ footer {
     opacity: 0.52;
   }
 
-  #thinking .edge-bleed.thinking-right {
+  #projects .edge-bleed.thinking-right {
     right: -210px;
     bottom: -80px;
     width: 520px;
@@ -1190,15 +1350,67 @@ font-family:'Fraunces',Georgia,serif!important;
 .rip-l{font-size:clamp(44px,7vw,82px)!important;letter-spacing:-.04em;}
 
 @media (max-width: 700px) {
-  .hero-inner { padding: 0 24px; }
-  .ghost-27 { font-size: 180px; opacity: 0.12; right: -40px; }
+  #hero { min-height: auto; padding: 104px 0 64px; }
+  .hero-inner { padding: 0 22px; max-width: 100%; }
+  .ghost-27 { font-size: 150px; opacity: 0.08; right: -56px; }
   .ghost-2026 { display: none; }
   .work-grid { grid-template-columns: 1fr; }
   .about-layout { grid-template-columns: 1fr; gap: 40px; }
   .contact-layout { grid-template-columns: 1fr; }
-  .section-inner { padding: 0 24px; }
-  nav { padding: 12px 20px; }
-  .nav-links { gap: 16px; }
+  .contact-frame { grid-template-columns: 1fr; padding: 26px 22px; }
+  .contact-portrait { width: min(72vw, 210px); }
+  .section { padding: 72px 0; }
+  .section-inner { padding: 0 22px; }
+  nav { padding: 12px 18px; align-items: flex-start; gap: 12px; }
+  .nav-links { gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
+  .nav-links a { font-size: 10px; letter-spacing: 0.1em; }
+  .rip-xl { font-size: clamp(48px, 16vw, 64px) !important; white-space: normal; }
+  .rip-l { font-size: clamp(34px, 13vw, 50px) !important; white-space: normal; }
+  .rip-m { font-size: 15px; }
+  .rip-s { font-size: 12px; }
+  .pill-strip { display: flex; width: fit-content; max-width: 100%; line-height: 1.5; }
+  .cutout { max-width: 100%; font-size: 13px; }
+  .work-cell { min-height: auto; padding: 22px; }
+  .work-cell.feature { padding: 24px; }
+  .work-cell.medium .work-org,
+  .work-cell.compact .work-org,
+  .work-org { font-size: 25px; letter-spacing: -0.02em; }
+  .feature .ghost-word { display: none; }
+  .work-kicker,
+  .work-role,
+  .work-tag { letter-spacing: 0.09em; }
+  .asset-bg { opacity: 0.18 !important; }
+  .section > .asset-img,
+  .edge-bleed,
+  .star { display: none !important; }
+  #hero > .asset-img { display: none !important; }
+  #hero > .hero-laptop,
+  #hero > .hero-laptop-ghost,
+  #hero > .hero-koi-top,
+  #hero > .hero-koi-bottom {
+    display: block !important;
+  }
+  #hero > .hero-laptop {
+    display: none !important;
+  }
+  #hero > .hero-laptop-ghost {
+    display: none !important;
+  }
+  #hero > .hero-koi-top {
+    left: -48px !important;
+    top: 126px !important;
+    width: 84px !important;
+    height: 162px !important;
+    opacity: 0.28 !important;
+  }
+  #hero > .hero-koi-bottom {
+    right: -22px !important;
+    bottom: 18px !important;
+    width: 82px !important;
+    height: 160px !important;
+    opacity: 0.34 !important;
+  }
+  #hero > .asset-bg:first-of-type { opacity: 0.2 !important; }
   footer { padding: 24px; flex-direction: column; gap: 12px; }
 }
 
@@ -1275,79 +1487,69 @@ font-family:'Fraunces',Georgia,serif!important;
 <nav>
 <span class="nav-name">Jasmine Andresol</span>
 <ul class="nav-links">
-<li><a href="#work">Work</a></li>
-<li><a href="#thinking">Thinking</a></li>
-<li><a href="#about">About</a></li>
+<li><a href="#work">Experience</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#about">Personal</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
 </nav>
 <!-- HERO -->
 <section id="hero">
-<span class="margin-label left">Portfolio · 2026</span>
-<span class="margin-label right">Applied AI / Software</span>
-<img alt="" aria-hidden="true" class="edge-bleed hero-botanical" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2813%29.png"/>
 <img alt="" aria-hidden="true" class="edge-bleed hero-fragment" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%286%29.png"/>
 <!-- Folder-based image assets; keep these image files in the same folder as this HTML file. -->
 <img alt="" aria-hidden="true" class="asset-bg" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2821%29.jpeg" style="left:0;top:0;width:100%;height:100%;opacity:.35;mix-blend-mode:soft-light;"/>
 <img alt="" aria-hidden="true" class="asset-bg" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2825%29.jpeg" style="left:-5%;right:-5%;top:35%;width:110%;height:44%;opacity:.18;transform:rotate(1.25deg);"/>
 <img alt="" aria-hidden="true" class="asset-bg" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2825%29.jpeg" style="left:-5%;right:-5%;top:-5%;width:110%;height:46%;opacity:.14;transform:rotate(181deg) scaleX(-1);"/>
-<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2813%29.png" style="right:-60px;top:-120px;width:620px;height:640px;opacity:.82;"/>
-<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%286%29.png" style="left:-40px;bottom:60px;width:200px;height:220px;opacity:.7;transform:rotate(-32deg);"/>
-<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2811%29.png" style="right:0;bottom:-20px;width:160px;height:308px;opacity:.9;transform:rotate(1.5deg);"/>
-<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/Koi%20%281%29.png" style="left:-40px;top:-30px;width:160px;height:308px;opacity:.75;transform:rotate(0deg);"/>
-<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2837%29.png" style="right:280px;bottom:100px;width:180px;height:200px;opacity:.65;transform:rotate(-15deg);"/>
+<img alt="" aria-hidden="true" class="asset-img hero-laptop-ghost" src="laptop.png" style="right:18px;top:94px;width:560px;height:auto;opacity:.08;"/>
+<img alt="" aria-hidden="true" class="asset-img hero-laptop" src="laptop.png" style="right:40px;top:122px;width:480px;height:auto;opacity:1;"/>
+<img alt="" aria-hidden="true" class="asset-img hero-koi-top" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/Koi%20%281%29.png" style="left:-34px;top:132px;width:112px;height:214px;opacity:.42;transform:rotate(-7deg);"/>
+<img alt="" aria-hidden="true" class="asset-img hero-koi-bottom" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2811%29.png" style="right:26px;bottom:-42px;width:124px;height:238px;opacity:.72;transform:rotate(-7deg);"/>
 <!-- Ghost numbers -->
 <div aria-hidden="true" class="ghost-27">27</div>
-<!-- Scattered stars -->
-<div aria-hidden="true" class="star" style="font-size:60px;color:rgb(196,98,42);top:80px;right:520px;transform:rotate(-12deg)">★</div>
-<div aria-hidden="true" class="star" style="font-size:36px;color:rgb(139,58,26);top:260px;left:420px;transform:rotate(-2deg)">★</div>
-<div aria-hidden="true" class="star" style="font-size:22px;color:rgb(212,135,74);top:340px;left:580px;transform:rotate(7deg)">★</div>
-<div aria-hidden="true" class="star" style="font-size:22px;color:rgb(212,135,74);top:320px;left:540px;transform:rotate(-1deg)">★</div>
-<div aria-hidden="true" class="star" style="font-size:36px;color:rgb(139,58,26);bottom:120px;right:480px;transform:rotate(-6deg)">★</div>
+<!-- Accent stars -->
+<div aria-hidden="true" class="star hero-star hero-star-lg" style="top:118px;right:42%;transform:rotate(-12deg)">★</div>
+<div aria-hidden="true" class="star hero-star hero-star-sm" style="top:42%;left:41%;transform:rotate(7deg)">★</div>
+<div aria-hidden="true" class="star hero-star hero-star-sm" style="bottom:18%;right:36%;transform:rotate(-6deg)">★</div>
 <!-- Scribble accent -->
 
 
 <!-- Diamond -->
 
-<!-- Thin bar rule -->
-<div aria-hidden="true" style="position:absolute;top:380px;left:420px;width:200px;height:5px;background:rgba(140,60,15,0.35);transform:rotate(-0.8deg);pointer-events:none;"></div>
 <div class="hero-inner">
 <!-- RIP headlines -->
 <div class="rip-stack">
-<div class="rip rip-xl">BUILDING</div>
-<div class="rip rip-l">FOR POSSIBILITY.</div>
+<div class="rip rip-xl">JASMINE</div>
+<div class="rip rip-l">ANDRESOL</div>
 <div class="rip-badges">
 <div class="rip rip-m">Harvard · '27</div>
-<div class="rip rip-s">CS · ML · Agentic</div>
+<div class="rip rip-s">CS · ML · Applied AI</div>
 </div>
 </div>
 <!-- Pill tag strip -->
-<div class="pill-strip">Applied AI · Machine Learning · Technology for Social Impact</div>
+<div class="pill-strip">Applied AI · Software Engineering · Healthcare & Social Impact</div>
 <!-- Cutout -->
 <div style="margin-top:32px;display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap;">
 <div class="cutout">
-        I build systems that learn —<br/>
-        and try to stay curious<br/>
-        about what they cannot yet do.
+        Harvard A.B./S.M. candidate
+        in Computer Science <br/> building effective and informed AI/ML systems
       </div>
 </div>
 </div>
 </section>
 <!-- WORK -->
 <section class="section" id="work">
-<span class="margin-label left">Selected Work</span>
+<span class="margin-label left">Experience</span>
 <span class="margin-label right">Research / Engineering</span>
 <img alt="" aria-hidden="true" class="edge-bleed work-left" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2819%29.png"/>
 <!-- 33 background image -->
-<img alt="" aria-hidden="true" class="asset-bg" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2833%29.jpeg" style="position:absolute;left:0;top:0;width:100%;height:100%;opacity:.55;z-index:0;object-fit:cover;mix-blend-mode:soft-light;"/>
-<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2819%29.png" style="left:-80px;bottom:20px;width:220px;height:240px;opacity:.8;transform:rotate(-2.92deg);"/>
-<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2827%29.png" style="left:-170px;top:10px;width:420px;height:460px;opacity:.78;transform:rotate(10deg);"/>
-<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2841%29.png" style="right:-200px;top:360px;width:420px;height:420px;opacity:.76;transform:rotate(10deg);mix-blend-mode:screen;"/>
+<img alt="" aria-hidden="true" class="asset-bg" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2833%29.jpeg" style="position:absolute;left:-8%;top:72px;width:116%;height:210px;opacity:.16;z-index:0;object-fit:cover;mix-blend-mode:soft-light;transform:rotate(-1.2deg);"/>
+<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2819%29.png" style="left:22px;bottom:88px;width:150px;height:170px;opacity:.42;transform:rotate(-2.92deg);"/>
+<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2841%29.png" style="right:24px;top:430px;width:230px;height:230px;opacity:.3;transform:rotate(10deg);mix-blend-mode:screen;"/>
 <!-- bg star -->
 <div aria-hidden="true" class="star" style="font-size:60px;color:rgb(196,98,42);opacity:0.18;position:absolute;top:40px;right:60px;transform:rotate(-65deg)">★</div>
 <div class="section-inner">
-<p class="section-eyebrow reveal">Selected Work</p>
-<div class="work-grid editorial-work">
+<p class="section-eyebrow reveal">Experience</p>
+<div class="work-grid editorial-work project-feature-grid">
 <article class="work-cell feature reveal"><div class="ghost-word">SALESFORCE</div>
 <div>
 <div class="work-kicker">Feature · 2026 · Salesforce</div>
@@ -1366,13 +1568,13 @@ font-family:'Fraunces',Georgia,serif!important;
 </article>
 <article class="work-cell feature reveal"><div class="ghost-word">MGH</div>
 <div>
-<div class="work-kicker">Feature · 2025–Present · MGH / HMS</div>
-<div class="work-org">Zomorrodi Lab</div>
-<div class="work-role">Mass General Hospital &amp; Harvard Medical School</div>
+<div class="work-kicker">Research · 2025–Present · MGH / HMS</div>
+<div class="work-org">Feature Selection</div>
+<div class="work-role">Zomorrodi Lab · Mass General Hospital &amp; Harvard Medical School</div>
 </div>
 <div>
-<div class="work-desc">Developing AI predictive models for gut microbiome analysis, optimizing feature selection and model performance across complex clinical datasets using Python, Scikit-learn, TensorFlow, and PyTorch.</div>
-<div class="work-impact"><strong>Why it matters:</strong> Identifies patient health predictors and therapeutic targets in inflammatory and metabolic diseases.</div>
+<div class="work-desc">Developing research on feature selection techniques for the gut microbiome, using Python, Scikit-learn, TensorFlow, and PyTorch to study patient-level signals in complex biomedical data.</div>
+<div class="work-impact"><strong>Why it matters:</strong> Connects machine learning, feature selection, and clinical interpretation to identify potential predictors and therapeutic targets in inflammatory and metabolic disease.</div>
 <div class="work-tag-row">
 <span class="work-tag">Medical AI</span>
 <span class="work-tag">Research</span>
@@ -1380,152 +1582,287 @@ font-family:'Fraunces',Georgia,serif!important;
 </div>
 </div>
 </article>
-<article class="work-cell medium reveal">
-<div class="work-kicker">Research · Spring 2026</div>
-<div class="work-org">Optimal Transport Proof Autoformalization</div>
-<div class="work-role">Proof Autoformalization</div>
-<div class="work-desc">Built a Neural Optimal Transport alignment framework mapping natural language proofs to formal Lean code spaces at the token level, using a balanced-OT void-token mechanism to preserve sequence topology.</div>
-<div class="work-impact"><strong>Result:</strong> Generated soft token prompts with a greater than 2× accuracy leap over validation baselines.</div>
-<div class="work-tag-row">
-<span class="work-tag">Python</span>
-<span class="work-tag">PyTorch</span>
-<span class="work-tag">Lean</span>
-</div>
-</article>
-<article class="work-cell medium reveal">
-<div class="work-kicker">Research · Fall 2025</div>
-<div class="work-org">Empirical Machine Learning Privacy Assessment</div>
-<div class="work-role">Differential Privacy · ML Security</div>
-<div class="work-desc">Evaluated membership inference attack vulnerability on neural networks trained over sensitive biomedical datasets, testing privacy-utility tradeoffs under DP-SGD and prediction-level perturbation mechanisms.</div>
-<div class="work-tag-row">
-<span class="work-tag">DP-SGD</span>
-<span class="work-tag">Security</span>
-<span class="work-tag">Biomedical Data</span>
-</div>
-</article>
-<article class="work-cell medium reveal">
+<article class="work-cell feature reveal"><div class="ghost-word">CORE</div>
+<div>
 <div class="work-kicker">Internship · 2025 · Salesforce</div>
 <div class="work-org">Salesforce Internship</div>
 <div class="work-role">Software Engineering · Full-Stack Development</div>
+</div>
+<div>
 <div class="work-desc">Built a full-stack web application using React, Node.js, Express, and PostgreSQL, integrating the OpenAI API through an MCP server for search prompting and a custom recommendation algorithm.</div>
 <div class="work-tag-row">
 <span class="work-tag">React</span>
 <span class="work-tag">Node</span>
 <span class="work-tag">OpenAI API</span>
 </div>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- FEATURED PROJECTS -->
+<section class="section" id="projects">
+<span class="margin-label left">Projects</span>
+<span class="margin-label right">Builds / Research</span>
+<img alt="" aria-hidden="true" class="edge-bleed thinking-left" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2829%29.png"/>
+<img alt="" aria-hidden="true" class="edge-bleed thinking-right" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2812%29.png"/>
+<!-- Oil and Cold Wax background image - with blend mode -->
+<img alt="" aria-hidden="true" class="asset-bg" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/Oil%20and%20Cold%20Wax.jpeg" style="position:absolute;left:-8%;top:76px;width:116%;height:230px;opacity:.17;z-index:0;object-fit:cover;mix-blend-mode:soft-light;transform:rotate(1.4deg);"/>
+<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2812%29.png" style="right:28px;top:128px;width:210px;height:205px;opacity:.36;transform:rotate(.71deg);"/>
+<!-- Image 30 - dramatic tilt coming out of left side, FLIPPED, positive 55 degree rotation -->
+<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2829%29.png" style="left:20px;top:54%;transform:translateY(-50%) rotate(2deg) scaleX(-1);width:170px;height:190px;opacity:.34;"/>
+<div aria-hidden="true" class="star" style="font-size:22px;color:rgb(212,135,74);opacity:0.6;position:absolute;bottom:80px;right:100px;transform:rotate(23deg)">★</div>
+<div aria-hidden="true" class="star" style="font-size:22px;color:rgb(212,135,74);opacity:0.6;position:absolute;bottom:110px;right:136px;transform:rotate(-1deg)">★</div>
+<div class="section-inner">
+<p class="section-eyebrow reveal">Featured Projects</p>
+<div class="work-grid editorial-work">
+<article class="work-cell feature reveal"><div class="ghost-word">FIDELITY</div>
+<div>
+<div class="work-kicker">Thesis · 2026–Present</div>
+<div class="work-org">Information Fidelity</div>
+<div class="work-role">Representational loss in AI-mediated learning</div>
+</div>
+<div>
+<div class="work-desc">Studying what information survives, disappears, or changes when source material is transformed through LLMs and other representational spaces, with an initial focus on education, museums, and human understanding.</div>
+<div class="work-impact"><strong>Focus:</strong> Characterizing how uncertainty, contradiction, provenance, temporal trajectories, and evidentiary gaps are preserved or flattened across AI-generated narratives and alternative interface designs.</div>
+<div class="work-tag-row">
+<span class="work-tag">Thesis</span>
+<span class="work-tag">LLMs</span>
+<span class="work-tag">HCI</span>
+<span class="work-tag">Learning</span>
+</div>
+</div>
+</article>
+<article class="work-cell feature reveal"><div class="ghost-word">AVIRA</div>
+<div>
+<div class="work-kicker">Healthcare Technology · 2026–Present</div>
+<div class="work-org">Avira Health</div>
+<div class="work-role">AI-assisted referral coordination platform</div>
+</div>
+<div>
+<div class="work-desc">Building a case-management and referral platform that helps care teams identify appropriate providers based on clinical needs, insurance coverage, and patient preferences.</div>
+<div class="work-impact"><strong>Focus:</strong> Translating interviews with case managers and clinicians into provider search, referral tracking, discharge planning, and referral-packet workflows.</div>
+<div class="work-tag-row">
+<span class="work-tag">Health Tech</span>
+<span class="work-tag">AI Workflow</span>
+<span class="work-tag">User Research</span>
+</div>
+</div>
+</article>
+<article class="work-cell feature reveal"><div class="ghost-word">STYLE</div>
+<div>
+<div class="work-kicker">Music · Fashion · Personalization · 2026</div>
+<div class="work-org">Soundrobe</div>
+<div class="work-role">Music-to-wardrobe recommendation platform</div>
+</div>
+<div>
+<div class="work-desc">Created a recommendation platform that connects musical taste to personalized fashion suggestions, analyzing listening habits and mood to generate wardrobe ideas.</div>
+<div class="work-impact"><strong>Why it matters:</strong> Turns taste into an interface: a playful product bridge between identity, media, and everyday style.</div>
+<div class="work-tag-row">
+<span class="work-tag">Next.js</span>
+<span class="work-tag">Supabase</span>
+<span class="work-tag">Recommenders</span>
+</div>
+</div>
+</article>
+</div>
+<div class="work-grid editorial-work project-secondary-grid" style="margin-top:16px;">
+<article class="work-cell medium reveal">
+<div class="work-kicker">Voice AI · Language Learning · 2026</div>
+<div class="work-org">Fala</div>
+<div class="work-role">Voice-based language practice app</div>
+<div class="work-desc">Built a language-practice app where users speak into the microphone, a local language model acts as a conversation partner, and local text-to-speech reads responses aloud.</div>
+<div class="work-tag-row">
+<span class="work-tag">JavaScript</span>
+<span class="work-tag">Voice AI</span>
+<span class="work-tag">Local LLM</span>
+</div>
+</article>
+<article class="work-cell medium reveal">
+<div class="work-kicker">Health AI · Referral Operations · 2026</div>
+<div class="work-org">Carefinder</div>
+<div class="work-role">Referral packet automation</div>
+<div class="work-desc">Developed the care-coordination prototype behind Avira: clinical-summary generation, insurance checks, facility recommendations, and referral packet assembly.</div>
+<div class="work-tag-row">
+<span class="work-tag">Health Tech</span>
+<span class="work-tag">AI Workflow</span>
+<span class="work-tag">HTML</span>
+</div>
+</article>
+<article class="work-cell medium reveal">
+<div class="work-kicker">Harvard Statistics Department · 2026</div>
+<div class="work-org">STAI-X Challenge</div>
+<div class="work-role">Public Health Forecasting</div>
+<div class="work-desc">Built a mixture-of-experts forecasting system for state-level overdose emergency department visit rates, engineering temporal and jurisdiction-level features across multimodal public-health data.</div>
+<div class="work-tag-row">
+<span class="work-tag">Python</span>
+<span class="work-tag">LightGBM</span>
+<span class="work-tag">Time Series</span>
+</div>
+</article>
+<article class="work-cell medium reveal">
+<div class="work-kicker">ACM Social Hackathon · Winner · 2024</div>
+<div class="work-org">SanaHealth</div>
+<div class="work-role">Public health ML visualization</div>
+<div class="work-desc">Built an interactive machine learning system that combines demographic and environmental data to predict and visualize cancer-prevalence clusters across San Luis Potosi, Mexico.</div>
+<div class="work-tag-row">
+<span class="work-tag">Machine Learning</span>
+<span class="work-tag">Public Health</span>
+<span class="work-tag">Visualization</span>
+</div>
+</article>
+<article class="work-cell medium reveal">
+<div class="work-kicker">Creative AI · Design Tool · 2026</div>
+<div class="work-org">Motif Studio</div>
+<div class="work-role">ML-powered mood board generator</div>
+<div class="work-desc">Built an app that turns a written idea into a visual mood board, using machine learning to help people move from language to visual direction.</div>
+<div class="work-tag-row">
+<span class="work-tag">TypeScript</span>
+<span class="work-tag">Creative AI</span>
+<span class="work-tag">Design</span>
+</div>
+</article>
+<article class="work-cell compact reveal">
+<div class="work-kicker">Accessibility · ML · 2026</div>
+<div class="work-org">ContextGaze</div>
+<div class="work-role">Eye-gaze communication technology</div>
+<div class="work-desc">Built context-aware eye-gaze communication technology powered by machine learning and eye tracking.</div>
+<div class="work-tag-row">
+<span class="work-tag">JavaScript</span>
+<span class="work-tag">Accessibility</span>
+</div>
 </article>
 <article class="work-cell compact reveal">
 <div class="work-kicker">Award · Apr 2025</div>
 <div class="work-org">Mosaic</div>
-<div class="work-role">Anthropic × WiCS · Best Impact</div>
-<div class="work-desc">Led full-stack development of an AI education engine that turns cultural narratives into dynamic lesson plans and multimedia storybooks through Anthropic's orchestration API.</div>
+<div class="work-role">Anthropic Hackathon Finalist · Best Impact</div>
+<div class="work-desc">Led development of an AI educational platform that transforms cultural narratives into interactive lesson plans and multimedia storybooks.</div>
 <div class="work-tag-row">
+<span class="work-tag">React</span>
+<span class="work-tag">Supabase</span>
 <span class="work-tag">Claude API</span>
-<span class="work-tag">Education</span>
 </div>
 </article>
+</div>
+<div style="margin-top:56px;">
+<p class="section-eyebrow reveal">Course Projects</p>
+<div class="work-grid editorial-work course-grid">
 <article class="work-cell compact reveal">
-<div class="work-kicker">Initiative · 2026</div>
-<div class="work-org">Haiti Access</div>
-<div class="work-role">Educational Access Initiative</div>
-<div class="work-desc">Launched a direct-support effort for Haitian students facing immediate barriers to school, coordinating tuition, uniforms, shoes, supplies, vetting, and delivery across six schools in Léogâne.</div>
+<div class="work-kicker">CS2760 · Human-AI Interaction / Education · May 2026</div>
+<div class="work-org">Pedagogical Alignment of LLMs</div>
+<div class="work-role">Lesson planning study</div>
+<div class="work-desc">Evaluated how LLM interaction patterns preserve or flatten teacher intent in CS lesson planning, comparing systems that differ in how they elicit pedagogical goals.</div>
 <div class="work-tag-row">
+<span class="work-tag">LLMs</span>
 <span class="work-tag">Education</span>
-<span class="work-tag">Community</span>
+<span class="work-tag">HCI</span>
 </div>
 </article>
 <article class="work-cell compact reveal">
-<div class="work-kicker">Award · 2024</div>
-<div class="work-org">ACM Social Hackathon Winner</div>
-<div class="work-role">ACM Social Hackathon Winner</div>
-<div class="work-desc">Developed a regional ML engine using demographic profiles and environmental metrics to predict and visualize cancer prevalence clusters across San Luis Potosí, Mexico.</div>
+<div class="work-kicker">CS2840 · Computational Optimal Transport · Dec 2025</div>
+<div class="work-org">Proof Language Translation</div>
+<div class="work-role">Optimal transport autoformalization</div>
+<div class="work-desc">Used optimal transport between natural language and Lean proof embeddings to improve small-model proof autoformalization.</div>
 <div class="work-tag-row">
-<span class="work-tag">ML</span>
-<span class="work-tag">Public Health</span>
+<span class="work-tag">Python</span>
+<span class="work-tag">PyTorch</span>
+<span class="work-tag">Lean</span>
 </div>
 </article>
 <article class="work-cell compact reveal">
-<div class="work-kicker">Systems · Spring 2026</div>
-<div class="work-org">Fault-Tolerant Distributed Booking System</div>
-<div class="work-role">Node.js · WebSockets · Paxos</div>
-<div class="work-desc">Engineered an airline seat-selection backend using a Paxos-backed key-value store, compare-and-swap safety parameters, and WebSocket synchronization under node failures.</div>
+<div class="work-kicker">CS2260 · Differential Privacy · Dec 2025</div>
+<div class="work-org">Empirical ML Privacy Assessment</div>
+<div class="work-role">Membership inference attacks</div>
+<div class="work-desc">Compared training-level DP-SGD with prediction-level privacy defenses, measuring empirical privacy leakage against model utility.</div>
+<div class="work-tag-row">
+<span class="work-tag">DP-SGD</span>
+<span class="work-tag">Privacy</span>
+<span class="work-tag">ML Security</span>
+</div>
+</article>
+<article class="work-cell compact reveal">
+<div class="work-kicker">CS2620 · Distributed Computing · May 2026</div>
+<div class="work-org">Fault-Tolerant Booking System</div>
+<div class="work-role">Paxos-replicated reservations</div>
+<div class="work-desc">Engineered an airline booking backend using Paxos-replicated storage and atomic compare-and-swap operations under concurrent requests and node failures.</div>
 <div class="work-tag-row">
 <span class="work-tag">Node.js</span>
+<span class="work-tag">WebSockets</span>
 <span class="work-tag">Paxos</span>
 </div>
 </article>
+<article class="work-cell compact reveal">
+<div class="work-kicker">ES152 · Robotics / Computer Vision · Spring 2026</div>
+<div class="work-org">UR5 Vision Project</div>
+<div class="work-role">Autonomous peg placement</div>
+<div class="work-desc">Built a computer vision and inverse kinematics system for a UR5 robot arm, using AprilTag fiducial detection to support autonomous placement on a 7x7 pegboard.</div>
+<div class="work-tag-row">
+<span class="work-tag">Python</span>
+<span class="work-tag">Robotics</span>
+<span class="work-tag">Vision</span>
 </div>
-<!-- Stamp-style aside -->
-<div style="margin-top:48px;">
-<div class="stamp"><strong>Leadership</strong>Computer Science Peer Concentration Advisor
-Harvard Caribbean Club · Vice President
-Harvard Greener Scott Scholars · Treasurer</div>
-</div>
-</div>
-</section>
-<!-- THINKING -->
-<section class="section" id="thinking">
-<span class="margin-label left">Questions</span>
-<span class="margin-label right">Systems / Access</span>
-<img alt="" aria-hidden="true" class="edge-bleed thinking-left" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2829%29.png"/>
-<img alt="" aria-hidden="true" class="edge-bleed thinking-right" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2812%29.png"/>
-<!-- Oil and Cold Wax background image - with blend mode -->
-<img alt="" aria-hidden="true" class="asset-bg" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/Oil%20and%20Cold%20Wax.jpeg" style="position:absolute;left:0;top:0;width:100%;height:100%;opacity:.45;z-index:0;object-fit:cover;mix-blend-mode:soft-light;"/>
-<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2812%29.png" style="right:-80px;top:40px;width:324px;height:313px;opacity:.8;transform:rotate(.71deg);"/>
-<!-- Image 30 - dramatic tilt coming out of left side, FLIPPED, positive 55 degree rotation -->
-<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2829%29.png" style="left:-80px;top:50%;transform:translateY(-50%) rotate(2deg) scaleX(-1);width:260px;height:280px;opacity:.7;"/>
-<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2835%29.png" style="right:140px;bottom:40px;width:140px;height:160px;opacity:.6;transform:rotate(-8deg);"/>
-<div aria-hidden="true" class="star" style="font-size:22px;color:rgb(212,135,74);opacity:0.6;position:absolute;bottom:80px;right:100px;transform:rotate(23deg)">★</div>
-<div aria-hidden="true" class="star" style="font-size:22px;color:rgb(212,135,74);opacity:0.6;position:absolute;bottom:110px;right:136px;transform:rotate(-1deg)">★</div>
-<div class="section-inner">
-<p class="section-eyebrow reveal">Things I'm thinking about</p>
-<div class="thinking-list">
-<div class="thinking-item reveal">
-<span class="thinking-num">01</span>
-<p class="thinking-text">Where agentic systems lose the thread</p>
-</div>
-<div class="thinking-item reveal">
-<span class="thinking-num">02</span>
-<p class="thinking-text">Biomedical ML as a craft problem</p>
-</div>
-<div class="thinking-item reveal">
-<span class="thinking-num">03</span>
-<p class="thinking-text">Who the tools aren't built for — not as a slogan. As something I actually sit with.</p>
+</article>
 </div>
 </div>
 </div>
 </section>
-<!-- ABOUT -->
+<!-- CREATIVE / PERSONAL -->
 <section class="section" id="about">
-<span class="margin-label left">Profile</span>
-<span class="margin-label right">Harvard CS</span>
+<span class="margin-label left">Personal</span>
+<span class="margin-label right">Community Building</span>
 <img alt="" aria-hidden="true" class="edge-bleed about-left" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/Desert%20Jewel.png"/>
 <img alt="" aria-hidden="true" class="edge-bleed about-right" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/Koi%20%281%29.png"/>
-<img alt="" aria-hidden="true" class="asset-bg" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2824%29.jpeg" style="left:-10%;top:10%;width:120%;height:220px;opacity:.12;transform:rotate(2.62deg);"/>
-<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/Koi%20%281%29.png" style="right:60px;top:80px;width:240px;height:220px;opacity:.75;transform:rotate(3deg);"/>
-<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/Desert%20Jewel.png" style="left:40px;bottom:100px;width:200px;height:200px;opacity:.7;transform:rotate(-7deg) scaleX(-1);"/>
-<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2836%29.png" style="right:240px;bottom:60px;width:160px;height:180px;opacity:.65;transform:rotate(4deg);"/>
+<img alt="" aria-hidden="true" class="asset-bg" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2824%29.jpeg" style="left:-8%;top:68px;width:116%;height:190px;opacity:.16;transform:rotate(2.62deg);object-fit:cover;"/>
+<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/Koi%20%281%29.png" style="right:50px;top:100px;width:180px;height:170px;opacity:.42;transform:rotate(3deg);"/>
+<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/Desert%20Jewel.png" style="left:28px;bottom:110px;width:150px;height:150px;opacity:.42;transform:rotate(-7deg) scaleX(-1);"/>
 <div class="section-inner">
-<p class="section-eyebrow reveal">About</p>
-<div class="about-layout">
-<div class="about-body reveal">
-<p>I'm an A.B./S.M. candidate in Computer Science at Harvard working at the intersection of applied machine learning and software engineering. My recent work ranges from production ML infrastructure at Salesforce to biomedical AI research at Mass General Hospital and Harvard Medical School, with a broader interest in building reliable systems that make complex information more accessible.</p>
-
-<div style="margin-top:32px;transform:rotate(-0.5deg)">
-<div class="cutout alt" style="max-width:340px;font-size:14px;">
-            "I build systems that learn — and try to stay curious about what they cannot yet do."
-          </div>
+<p class="section-eyebrow reveal">Personal</p>
+<div class="work-grid editorial-work">
+<article class="work-cell feature reveal"><a class="card-link" href="https://medium.com/@jasmine.andresol/my-trip-to-haiti-began-and-ended-with-a-question-of-educational-access-a405070f4da2" rel="noopener" target="_blank">Read about Haiti Access</a><div class="ghost-word">HAITI</div>
+<div>
+<div class="work-kicker">Personal Initiative · 2026</div>
+<div class="work-org">Haiti Access</div>
+<div class="work-role">Educational access initiative</div>
+</div>
+<div>
+<div class="work-desc">Direct-support effort for Haitian students facing immediate barriers to school, coordinating tuition, uniforms, shoes, supplies, vetting, and delivery across schools in Leogane.</div>
+<div class="work-tag-row">
+<span class="work-tag">Education Access</span>
+<span class="work-tag">Community</span>
+<span class="work-tag">Haiti</span>
 </div>
 </div>
-<div class="about-right reveal">
-<div class="stamp" style="width:100%">
-<strong>Quick facts</strong>Harvard · CS · '27
-Applied AI
-Machine Learning
-Software Engineering
-Medical AI
-Education Access</div>
+</article>
+<article class="work-cell medium reveal">
+<div class="work-kicker">Harvard SEAS · 2026–Present</div>
+<div class="work-org">CS Peer Concentration Advisor</div>
+<div class="work-role">Academic and career mentorship</div>
+<div class="work-desc">Selected to advise undergraduate computer science concentrators and pre-concentrators on coursework, planning, and navigating the CS community.</div>
+<div class="work-tag-row">
+<span class="work-tag">Mentorship</span>
+<span class="work-tag">CS</span>
 </div>
+</article>
+<article class="work-cell medium reveal">
+<div class="work-kicker">Harvard Caribbean Club · 2024–2026</div>
+<div class="work-org">Vice President / Treasurer</div>
+<div class="work-role">Student leadership</div>
+<div class="work-desc">Helped lead programming and operations for Harvard's Caribbean student community, including organizational planning and financial stewardship.</div>
+<div class="work-tag-row">
+<span class="work-tag">Leadership</span>
+<span class="work-tag">Community</span>
+</div>
+</article>
+<article class="work-cell medium reveal">
+<div class="work-kicker">Greener Scott Scholars · 2025–2026</div>
+<div class="work-org">Treasurer</div>
+<div class="work-role">Student organization finance</div>
+<div class="work-desc">Supported student programming through budgeting, treasury work, and coordination across organization priorities.</div>
+<div class="work-tag-row">
+<span class="work-tag">Operations</span>
+<span class="work-tag">Finance</span>
+</div>
+</article>
 </div>
 </div>
 </section>
@@ -1534,27 +1871,34 @@ Education Access</div>
 <span class="margin-label left">Contact</span>
 <span class="margin-label right">Jasmine Andresol</span>
 <img alt="" aria-hidden="true" class="edge-bleed contact-right" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/Hand%20embroidery%20Byzantine%20Fragments.png"/>
-<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2820%29.png" style="left:-110px;bottom:-80px;width:250px;height:346px;opacity:.75;transform:rotate(-.85deg);"/>
+<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2820%29.png" style="left:24px;bottom:28px;width:150px;height:220px;opacity:.38;transform:rotate(-.85deg);"/>
 <!-- Half orange (31) - flipped horizontally on LEFT edge -->
-<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2831%29.png" style="left:-85px;top:50%;transform:translateY(-50%) scaleX(-1);width:200px;height:200px;opacity:.8;"/>
+<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/_%20%2831%29.png" style="left:34px;top:48%;transform:translateY(-50%) scaleX(-1);width:145px;height:145px;opacity:.48;"/>
 <!-- Hand embroidery - BOTTOM RIGHT CORNER, LARGER, TOUCHING FOOTER -->
-<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/Hand%20embroidery%20Byzantine%20Fragments.png" style="right:0px;bottom:-60px;width:420px;height:420px;opacity:.92;transform:none;"/>
+<img alt="" aria-hidden="true" class="asset-img" src="https://raw.githubusercontent.com/Jandresol/personal-website/main/Hand%20embroidery%20Byzantine%20Fragments.png" style="right:28px;bottom:28px;width:240px;height:240px;opacity:.42;transform:none;"/>
 <div class="section-inner">
 <p class="section-eyebrow reveal">Contact</p>
-<div class="contact-layout">
-<div class="contact-item reveal">
-<div class="contact-label">Email</div>
-<a class="contact-value" href="mailto:jasmineandresol@college.harvard.edu">jasmineandresol<br/>@college.harvard.edu</a>
+<div class="contact-frame reveal">
+<div class="contact-portrait">
+<img alt="Pixel portrait of Jasmine Andresol" src="pixel-portrait.png"/>
 </div>
-<div class="contact-item reveal">
+<div>
+<div class="contact-heading">Let's connect.</div>
+</div>
+<div class="contact-links">
+<div class="contact-item">
+<div class="contact-label">Email</div>
+<a class="contact-value" href="mailto:jasmineandresol@college.harvard.edu">jasmineandresol@college.harvard.edu</a>
+</div>
+<div class="contact-item">
+<div class="contact-label">LinkedIn</div>
+<a class="contact-value" href="https://www.linkedin.com/in/jasmine-andresol-3a6583205/" rel="noopener" target="_blank">linkedin.com/in/jasmine-andresol-3a6583205</a>
+</div>
+<div class="contact-item">
 <div class="contact-label">GitHub</div>
 <a class="contact-value" href="https://github.com/Jandresol" rel="noopener" target="_blank">github.com/Jandresol</a>
 </div>
 </div>
-<div style="margin-top:48px;">
-<div class="stamp" style="color:rgba(200,130,50,0.55);border-color:rgba(200,130,50,0.45)">jasmineandresol
-@college.harvard.edu
-github.com/Jandresol</div>
 </div>
 </div>
 </section>
@@ -1595,7 +1939,7 @@ github.com/Jandresol</div>
   /* ─── Parallax scroll on decorative art ─── */
   if (!reduceMotion) {
     var parallaxEls = Array.prototype.slice.call(
-      document.querySelectorAll('.edge-bleed, .asset-img, .star, .ghost-27, .ghost-2026, .editorial-accent-star, .editorial-accent-circle, .editorial-accent-rect')
+      document.querySelectorAll('.edge-bleed, .asset-img:not(.hero-laptop):not(.hero-laptop-ghost), .star, .ghost-27, .ghost-2026, .editorial-accent-star, .editorial-accent-circle, .editorial-accent-rect')
     ).map(function (el, i) {
       var depth = 0.06 + (i % 5) * 0.035;
       return { el: el, depth: depth, baseTransform: el.style.transform || '' };
